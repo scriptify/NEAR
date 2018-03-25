@@ -5,6 +5,8 @@ const { Schema } = mongoose;
 
 const schema = new Schema({
     displayName: String,
+    gender: String,
+    profilePictureUrl: String,
     position: Schema.Types.Point
 });
 

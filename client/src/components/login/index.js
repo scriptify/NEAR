@@ -6,9 +6,25 @@ import './index.css';
 @observer
 class Login extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      displayName: ``,
+      gender: `woman`,
+      message: ``
+    };
+  }
+
   onLogin(e) {
     e.preventDefault();
-    this.props.dataStore.login({ displayName: e.target[0].value, gender: e.target[1].value })
+    this.props.dataStore.login(this.state);
+  }
+
+  onValueChange({ field, value }) {
+    this.setState({
+      ...this.state,
+      [field]: value
+    });
   }
 
   render() {
@@ -29,12 +45,15 @@ class Login extends Component {
     return (
       <div className={`login`}>
         <div className={`title`}>
-          <h1>What's your name?</h1>
+          <h1>Who are you?</h1>
         </div>
         <form className={`login__input`} onSubmit={ (e) => this.onLogin(e) }>
-          <input type={`text`} name={`name`} />
+          <p>Your name:</p>
+          <input type={`text`} name={`name`} onChange={e => this.onValueChange({ field: `displayName`, value: e.target.value })} required />
+          <p>What do do you want to talk about (your interests, hobbies...)?</p>
+          <input type={`text`} name={`message`} onChange={e => this.onValueChange({ field: `message`, value: e.target.value })} required />
           <div>
-            <select>
+            <select onChange={e => this.onValueChange({ field: `gender`, value: e.target.value })}>
               <option value={`woman`}>Woman</option>
               <option value={`man`}>Man</option>
               <option value={`woman`}>Other</option>

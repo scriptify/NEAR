@@ -15,12 +15,22 @@ function getRedirectUrl(url) {
     });
 }
 
-async function findNear({ position, socket, user }) {
-    // Update new position
-    user.position.coordinates = position;
-    await user.save();
+async function findNear({ position, socket, userId }) {
+    const user = await User.findOne({ _id: userId });
+    if (!user) {
+        return [];
+    }
 
-    // Find people near newUser (radius: 500m)
+    // Update new position
+    if (!(user.position.coordinates[0] === position[0] && user.position.coordinates[1] === position[1])) {
+        user.position = {
+            type: `Point`,
+            coordinates: position
+        };
+        await user.save();
+    }
+
+    // Find people near user (radius: 500m)
     const users = await User.find({
         position: {
             $near: {
@@ -34,7 +44,7 @@ async function findNear({ position, socket, user }) {
         }
     });
 
-    const usersToEmit = users.map(({ _id, displayName, profilePictureUrl, gender }) => ({ _id, displayName, profilePictureUrl, gender }));
+    const usersToEmit = users.map(({ _id, displayName, profilePictureUrl, gender, message }) => ({ _id, displayName, profilePictureUrl, gender, message }));
 
     socket.emit(`found-near`, usersToEmit);
 
@@ -43,7 +53,7 @@ async function findNear({ position, socket, user }) {
 function setup() {
     io.on(`connection`, (socket) => {
 
-        socket.on(`login`, async ({ displayName, position, gender }) => {
+        socket.on(`login`, async ({ displayName, position, gender, message }) => {
             const randomPictureUrl = `https://source.unsplash.com/random/800x800/?${gender}`;
             const profilePictureUrl = await getRedirectUrl(randomPictureUrl);
 
@@ -54,10 +64,13 @@ function setup() {
                     type: `Point`,
                     coordinates: position
                 },
-                gender
+                gender,
+                message
             });
-    
-            socket.emit(`logged-in`);
+
+            const { _id: userId } = await newUser.save();
+
+            socket.emit(`logged-in`, userId);
     
             socket.on(`delete`, async () => {
                 // Delete user
@@ -70,10 +83,10 @@ function setup() {
             });
     
             socket.on(`find-near`, async (newPosition) => {
-                await findNear({ position: newPosition, socket, user: newUser });
+                await findNear({ position: newPosition, socket, userId });
             });
 
-            await findNear({ position, socket, user: newUser });
+            await findNear({ position, socket, userId });
         });
 
     });

@@ -1,0 +1,20 @@
+.header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 30pt;
+    text-align: center;
+    background-image: url(./bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-bottom: solid 5px #000;
+    margin-bottom: 10px;
+}
+
+.header span {
+  color: #FFF;
+  background: #000;
+  padding: 4px;
+  text-align: center;
+  font-weight: bold;
+}

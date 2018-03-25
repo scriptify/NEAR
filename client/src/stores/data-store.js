@@ -7,10 +7,11 @@ class DataStore {
     @observable currentPosition = [];
 
     refresh(newPosition) {
-        this.currentPosition = newPosition;
+        if (newPosition)
+            this.currentPosition = newPosition;
         if (!this.user)
             return;
-        findNear({ position: newPosition });
+        findNear({ position: this.currentPosition });
     }
 
     foundNear(users) {
@@ -18,9 +19,9 @@ class DataStore {
         console.log(users);
     }
 
-    async login({ displayName, gender }) {
-        await login({ displayName, position: this.currentPosition, gender });
-        this.user = { displayName };
+    async login({ displayName, gender, message }) {
+        const _id = await login({ displayName, position: this.currentPosition, gender, message });
+        this.user = { displayName, gender, message , _id};
     }
 }
 
@@ -28,9 +29,13 @@ const dataStore = new DataStore();
 
 navigator.geolocation.watchPosition((pos) => {
     dataStore.refresh([
-        pos.coords.latitude,
-        pos.coords.longitude
+        pos.coords.longitude,
+        pos.coords.latitude
     ]);
 });
+
+window.setInterval(() => {
+    dataStore.refresh();
+}, 2000);
 
 export default dataStore;

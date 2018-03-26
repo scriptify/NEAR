@@ -25,11 +25,27 @@ class DataStore {
     }
 
     async login({ displayName, gender, message }) {
-        uiStore.setLoading(`Connecting you with people nearby...`);
-        const _id = await login({ displayName, position: this.currentPosition, gender, message });
-        this.user = { displayName, gender, message , _id };
-        uiStore.setNextStep(`near`);
-        uiStore.setLoading(false);
+        uiStore.setLoading(`Trying to retrieve your current position...`)
+        if (!navigator.geolocation) {
+            uiStore.setNotification(`Sorry, can't retrieve your current position.`);
+            uiStore.setLoading(false);
+            return;
+        }
+        navigator.geolocation.getCurrentPosition(async pos => {
+            this.currentPosition = [
+                pos.coords.longitude,
+                pos.coords.latitude
+            ];
+            uiStore.setLoading(`Connecting you with people nearby...`);
+            const _id = await login({ displayName, position: this.currentPosition, gender, message });
+            this.user = { displayName, gender, message , _id };
+            uiStore.setNextStep(`near`);
+            uiStore.setLoading(false);
+            startRefreshingData();
+        }, () => {
+            uiStore.setNotification(`Sorry, can't retrieve your current position.`);
+            uiStore.setLoading(false);
+        });
     }
 
     findUserById(id) {
@@ -118,16 +134,17 @@ class DataStore {
 }
 
 const dataStore = new DataStore();
-
-navigator.geolocation.watchPosition((pos) => {
-    dataStore.refresh([
-        pos.coords.longitude,
-        pos.coords.latitude
-    ]);
-});
-
-window.setInterval(() => {
-    dataStore.refresh();
-}, 2000);
+function startRefreshingData() {
+    navigator.geolocation.watchPosition((pos) => {
+        dataStore.refresh([
+            pos.coords.longitude,
+            pos.coords.latitude
+        ]);
+    }, (e) => alert(JSON.stringify(e)));
+    
+    window.setInterval(() => {
+        dataStore.refresh();
+    }, 2000);
+}
 
 export default dataStore;

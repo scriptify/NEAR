@@ -78,7 +78,7 @@ class Chat extends Component {
 
         <div className={`chat__bottom`}>
           <div className={`chat__bottom__input`}>
-            <input type={`text`} value={this.state.currMsg} onChange={ e => this.onMsgChange(e.target.value) } min={1} max={50} />
+            <input type={`text`} value={this.state.currMsg} onChange={ e => this.onMsgChange(e.target.value) } minLength={1} maxLength={50} />
             <button onClick={ () => this.onMsgSend() }><img src={send} alt={`send message`} /></button>
           </div>
         </div>

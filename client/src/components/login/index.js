@@ -35,7 +35,7 @@ class Login extends Component {
     return (
       <div className={`login`}>
         <div className={`title`}>
-          <h1>Who are you?</h1>
+          <h1>Introduce yourself.</h1>
         </div>
         <form className={`login__input`} onSubmit={ (e) => this.onLogin(e) }>
           <p><span>What's your name?</span></p>

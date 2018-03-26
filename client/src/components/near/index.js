@@ -7,9 +7,9 @@ import './index.css';
 class Near extends Component {
 
   render() {
-
-    if (!this.props.dataStore.user || this.props.dataStore.nearUsers.length === 0)
-      return ``;
+    if (!this.props.dataStore.user || this.props.dataStore.nearUsers.length <= 1) {
+      return <div className={`empty`}>Sorry, there are no people nearby</div>;
+    }
 
     return (
       <div className={`near`}>

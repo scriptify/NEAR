@@ -4,7 +4,8 @@
   "description": "Finding people near you.",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon --inspect index.js"
+    "start:dev": "nodemon --inspect index.js",
+    "start": "node index.js"
   },
   "author": "Maxmilian Torggler",
   "license": "MIT",

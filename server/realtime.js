@@ -3,9 +3,11 @@ const server = require(`http`).Server(app);
 const io = require(`socket.io`)(server);
 const request = require(`request`);
 
+const PORT = process.env.PORT || 3001;
+
 const { User } = require(`./db/models/index`);
 
-server.listen(3001);
+server.listen(PORT);
 
 let sockets = []; // Array holding sockets associated with userIds
 
@@ -133,6 +135,8 @@ function setup() {
         });
 
     });
+
+    return app;
 }
 
 module.exports = {

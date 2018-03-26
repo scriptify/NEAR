@@ -1,3 +1,5 @@
+const express = require(`express`);
+const path = require(`path`);
 const { connectDb } = require(`./db/index`);
 const { setup: setupRealtime } = require(`./realtime`);
 
@@ -9,7 +11,8 @@ async function main() {
         process.exit(1);
     }
 
-    setupRealtime();
+    const app = setupRealtime();
+    app.use(express.static(path.join(__dirname, `public`)));
 
     console.log(`Server up and running.`);
 }

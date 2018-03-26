@@ -1,3 +1,49 @@
-.app {
-  
+.request {
+    
+}
+
+.request__picture {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.request__picture img {
+    height: 230px;
+    width: auto;
+    border-radius: 50%;
+}
+
+.request__text {
+    max-width: 200px;
+    text-align: center;
+    font-size: 20pt;
+    margin: 40px auto;
+}
+
+.request__text span {
+    background: #000;
+    color: #FFF;
+}
+
+.request__buttons {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+}
+
+.request__buttons__button {
+    width: 50%;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border: none;
+    background: none;
+    border-top: solid 1px #000;
+    font-size: 16pt;
+}
+
+.request__buttons__button--dark {
+    background: #000;
+    color: #FFF;
 }

@@ -7,6 +7,8 @@ const { User } = require(`./db/models/index`);
 
 server.listen(3001);
 
+let sockets = []; // Array holding sockets associated with userIds
+
 function getRedirectUrl(url) {
     return new Promise((resolve) => {
         request.get(url, (err, res) => {
@@ -70,20 +72,61 @@ function setup() {
 
             const { _id: userId } = await newUser.save();
 
+            sockets.push({
+                userId,
+                socket
+            });
+
             socket.emit(`logged-in`, userId);
     
             socket.on(`delete`, async () => {
                 // Delete user
                 await User.remove({ _id: newUser._id });
+                sockets = sockets.filter(u => u.userId !== userId);
             });
 
             socket.on(`disconnect`, async () => {
                 // Delete user
                 await User.remove({ _id: newUser._id });
+                sockets = sockets.filter(u => u.userId !== userId);
             });
     
             socket.on(`find-near`, async (newPosition) => {
                 await findNear({ position: newPosition, socket, userId });
+            });
+
+            socket.on(`ask-user`, async (userToAskId) => {
+                // Ask user to have a chat
+                // Find socket of that user
+                const found = sockets.find(u => u.userId.equals(userToAskId));
+                if (!found) {
+                    socket.emit(`user-not-found`);
+                    return;
+                }
+                const { socket: userToAskSocket } = found;
+                // Notify that user that she got a request
+                userToAskSocket.emit(`chat-request`, userId);
+                // If she accepts the request with that id...
+                userToAskSocket.once(`request-accepted`, (uId) => {
+                    if (userId.equals(uId)) {
+                        // ...send an event to the requester
+                        socket.emit(`request-accepted`, uId);
+                    }
+                });
+
+                userToAskSocket.once(`request-denied`, (uId) => {
+                    if (userId.equals(uId)) {
+                        socket.emit(`request-denied`, uId);
+                    }
+                });
+            });
+
+            socket.on(`send-chat-message`, ({ userId, message }) => {
+                const found = sockets.find(u => u.userId.equals(userId));
+                if (!found)
+                    return;
+                const { socket: socketToSendMsg } = found;
+                socketToSendMsg.emit(`chat-message`, message);
             });
 
             await findNear({ position, socket, userId });

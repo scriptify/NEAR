@@ -4,6 +4,10 @@ import dataStore from './data-store';
 const socket = io(`http://localhost:3001`);
 
 socket.on(`found-near`, (d) => dataStore.foundNear(d));
+socket.on(`chat-request`, (d) => dataStore.chatRequest(d));
+socket.on(`request-accepted`, (d) => dataStore.accepted(d));
+socket.on(`request-denied`, (d) => dataStore.denied(d));
+socket.on(`chat-message`, (d) => dataStore.chatMessage(d));
 
 export function login({ displayName, position, gender, message }) {
     return new Promise((resolve) => {
@@ -13,9 +17,23 @@ export function login({ displayName, position, gender, message }) {
 }
 
 export function findNear({ position }) {
-    return new Promise((resolve) => {
-        socket.emit(`find-near`, position);
-    });
+    socket.emit(`find-near`, position);
+}
+
+export function askUser(id) {
+    socket.emit(`ask-user`, id);
+}
+
+export function decline(id) {
+    socket.emit(`request-denied`, id);
+}
+
+export function accept(id) {
+    socket.emit(`request-accepted`, id);
+}
+
+export function sendChatMessage({ userId, message }) {
+    socket.emit(`send-chat-message`, { userId, message });
 }
 
 window.addEventListener(`unload`, () => {

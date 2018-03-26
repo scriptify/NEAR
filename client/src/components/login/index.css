@@ -1,3 +1,52 @@
-.app {
-  
+.title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.login {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.login__input {
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.login__input p, .login__input input {
+    margin-bottom: 5px;
+}
+
+.login__input p span {
+    background: #000;
+    color: #FFF;
+    padding: 3px;
+}
+
+.login__input input[type="text"] {
+    margin-bottom: 10px;
+    text-align: center;
+    border: solid 2px #000;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.login__input input[type="submit"] {
+    background: #000;
+    color: #FFF;
+    width: 100%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border: none;
+    margin-top: 10px;
+    font-size: 16pt;
+    letter-spacing: 3px;
+}
+
+.login__input select {
+    background: #000;
+    color: #FFF;
+    border: none;
+    padding: 8px;
+    margin-top: 3px;
 }

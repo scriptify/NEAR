@@ -6,11 +6,6 @@ import './index.css';
 @observer
 class Near extends Component {
 
-  onLogin(e) {
-    e.preventDefault();
-    this.props.dataStore.login({ displayName: e.target[0].value, gender: e.target[1].value })
-  }
-
   render() {
 
     if (!this.props.dataStore.user || this.props.dataStore.nearUsers.length === 0)
@@ -25,7 +20,7 @@ class Near extends Component {
               return ``;
 
             return (
-              <div className={`user`} key={user.displayName}>
+              <div className={`user`} key={user._id} onClick={() => { this.props.uiStore.askUserById(user._id) }}>
                 <div className={`user__pic`}>
                   <img src={user.profilePictureUrl} alt={`Profile`} />
                 </div>

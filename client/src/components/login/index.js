@@ -48,18 +48,19 @@ class Login extends Component {
           <h1>Who are you?</h1>
         </div>
         <form className={`login__input`} onSubmit={ (e) => this.onLogin(e) }>
-          <p>Your name:</p>
+          <p><span>What's your name?</span></p>
           <input type={`text`} name={`name`} onChange={e => this.onValueChange({ field: `displayName`, value: e.target.value })} required />
-          <p>What do do you want to talk about (your interests, hobbies...)?</p>
+          <p><span>What do do you want to talk about <i>(your interests, hobbies...)</i>?</span></p>
           <input type={`text`} name={`message`} onChange={e => this.onValueChange({ field: `message`, value: e.target.value })} required />
           <div>
+            <p><span>What's your gender?</span></p>
             <select onChange={e => this.onValueChange({ field: `gender`, value: e.target.value })}>
               <option value={`woman`}>Woman</option>
               <option value={`man`}>Man</option>
               <option value={`woman`}>Other</option>
             </select>
           </div>
-          <input type={`submit`} value={`Find people!`} />
+          <input type={`submit`} value={`Find people near you`} />
         </form>
       </div>
     );

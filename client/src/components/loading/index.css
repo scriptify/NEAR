@@ -1,0 +1,24 @@
+.loading {
+  position: fixed;
+  top: 90px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 90px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.loading__icon img {
+  height: 100px;
+  width: auto;
+}
+
+.loading__text {
+  font-size: 17pt;
+  font-style: italic;
+  text-align: center;
+  margin-top: 20px;
+  color: rgba(0, 0, 0, 0.4);
+}

@@ -55,6 +55,9 @@ async function findNear({ position, socket, userId }) {
 }
 
 function setup() {
+    // Delete all users on startup
+    await User.remove({});
+
     io.on(`connection`, (socket) => {
 
         socket.on(`login`, async ({ displayName, position, gender, message }) => {
@@ -89,7 +92,8 @@ function setup() {
 
             socket.on(`disconnect`, async () => {
                 // Delete user
-                await User.remove({ _id: newUser._id });
+                await User.remove({ _id: userId });
+                console.log(`DELETE`, userId);
                 sockets = sockets.filter(u => u.userId !== userId);
             });
     

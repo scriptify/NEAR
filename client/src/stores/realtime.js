@@ -1,9 +1,9 @@
 import io from 'socket.io-client';
 import dataStore from './data-store';
 
-//const url = `http://192.168.0.108:3001`;
+const url = `http://192.168.0.108:3001`;
 
-const socket = io();
+const socket = io(url);
 
 socket.on(`found-near`, (d) => dataStore.foundNear(d));
 socket.on(`chat-request`, (d) => dataStore.chatRequest(d));

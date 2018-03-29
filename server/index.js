@@ -11,7 +11,7 @@ async function main() {
         process.exit(1);
     }
 
-    const app = setupRealtime();
+    const app = await setupRealtime();
     app.use(express.static(path.join(__dirname, `public`)));
 
     console.log(`Server up and running.`);

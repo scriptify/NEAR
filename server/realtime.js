@@ -54,7 +54,7 @@ async function findNear({ position, socket, userId }) {
 
 }
 
-function setup() {
+async function setup() {
     // Delete all users on startup
     await User.remove({});
 

@@ -2,6 +2,8 @@
     <img src="docs/near-header.png" />
 </div>
 
+(This project was originally created as an application to an university)
+
 # The problem
 People often complain about the fact, that humanity in general is getting more and more unsocial because of the wide spread use of distracting smartphones, which keep us from talking to the person sitting next to us in the bus or having a chat with that interesting person in the subway during the daily way to work. And I think that this problem is indeed there. I want to help everyone to have some great conversations during the train ride, the bus ride, at the airport and so on. And I don't think that technology on its core is the problem. It's how people use it. We can use it to play satisfying games, alone, to scroll through our Twitter feed, alone. Or we could use it to come in touch with people with similar interests in a more direct and simpler way than ever. Through the correct use of technology. So I would like to use the digital world to bring people back in its physical counterpart, in a very unobtrusive and direct way. I'm particularly interested in solving this problem because as a frequent user of public transport, I face this problem very often in my everydaylife. And it would be just too nice to have an interesting chat every time I am in a bus, waiting for a train or just sitting somewhere alone. And the more you talk to people, the opener you become. So that's also a very important aspect: Using technology to create a widespread conversation culture never seen before in the real world. And the opener the people, the better the world we live in. That's why I've chosen to solve this problem.
 

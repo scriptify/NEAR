@@ -20,55 +20,55 @@ I deployed it for testing purpose, you can access is via this URL: https://near-
 Here I will describe how NEAR can be used to find people nearby and have a chat with them. The tutorial doesn't explain how to proceed after finding a conversation partner, as this is something the users have to do for their own.
 
 #### Step 1: Open up the webapp by navigating to https://near-webapp.herokuapp.com/ with your favorite browser.
-<div style="margin: 0 auto; width: 330px; height: auto;">
-    <img src="docs/steps/step-1.png" />
+<div style="margin: 0 auto;">
+    <img src="docs/steps/step-1.png" width="330" />
 </div>
 
 #### Step 2: Enter some information about yourself.
-<div style="margin: 0 auto; width: 330px; height: auto;">
-    <img src="docs/steps/step-2.png" />
+<div style="margin: 0 auto;">
+    <img src="docs/steps/step-2.png" width="330" />
 </div>
 
 #### Step 3: Click on the button at the bottom ("Find people near you").
 
 #### Step 4: Allow the web app to track your current GPS position, so that people near you can be detected.
-<div style="margin: 0 auto; width: 330px; height: auto;">
-    <img src="docs/steps/step-4.png" />
+<div style="margin: 0 auto;">
+    <img src="docs/steps/step-4.png" width="330" />
 </div>
 
 #### Step 5: Select a person to have a chat with.
 
 Now you can see all the people nearby using NEAR at the moment.
 
-<div style="margin: 0 auto; width: 330px; height: auto;">
-    <img src="docs/steps/step-5.png" />
+<div style="margin: 0 auto;">
+    <img src="docs/steps/step-5.png" style="width: 330px; height: auto;" />
 </div>
 
 This is what other users see:
-<div style="margin: 0 auto; width: 330px; height: auto;">
-    <img src="docs/steps/step-5-2.png" />
+<div style="margin: 0 auto;">
+    <img src="docs/steps/step-5-2.png" style="width: 330px; height: auto;" />
 </div>
 
 Let's have a talk with Laura. To ask her if she would like to have a chat, just tap the according user.
 
 #### Step 6: Confirm (or not).
-<div style="margin: 0 auto; width: 330px; height: auto;">
-    <img src="docs/steps/step-6.png" />
+<div style="margin: 0 auto;">
+    <img src="docs/steps/step-6.png" style="width: 330px; height: auto;" />
 </div>
 
 #### Step 7: Wait for an answer.
-<div style="margin: 0 auto; width: 330px; height: auto;">
-    <img src="docs/steps/step-7.png" />
+<div style="margin: 0 auto;">
+    <img src="docs/steps/step-7.png" style="width: 330px; height: auto;" />
 </div>
 
 The other user needs to confirm if she would like to have a talk:
-<div style="margin: 0 auto; width: 330px; height: auto;">
-    <img src="docs/steps/step-7-2.png" />
+<div style="margin: 0 auto;">
+    <img src="docs/steps/step-7-2.png" style="width: 330px; height: auto;" />
 </div>
 
 #### Step 8: After the other user accepted your request, agree upon a place to meet.
-<div style="margin: 0 auto; width: 330px; height: auto;">
-    <img src="docs/steps/step-8.png" />
+<div style="margin: 0 auto;">
+    <img src="docs/steps/step-8.png" style="width: 330px; height: auto;" />
 </div>
 
 #### Step 9: (Hopefully) Have a nice talk!
